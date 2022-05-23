@@ -1,19 +1,16 @@
 const fs = require('fs').promises;
 const jediFile = 'jedi_list.json';
 
-async function replaceJedi(jediId, body) {
-    const data = await getAll();
-    const index = data.findIndex(value => {
-        return value.id === jediId;
-    });
-    const jedi = data[index];
-    Object.assign(jedi, body);
-    await writeJediFile(data);
-    return jedi;
+async function replaceJedi(jediId, jedi) {
+    //TODO write logic replacing jedi by it's id with newly passed jedi
+}
+
+async function deleteJedi(id) {
+    //TODO Delete jedi by given id in our file
 }
 
 async function getAll() {
-    return await readJediFile();
+    //TODO obtain all saved jedis and return it to callee
 }
 
 async function addJedi(jedi) {
@@ -48,19 +45,10 @@ async function writeJediFile(content) {
     }
 }
 
-async function deleteJedi(id) {
-    const data = await getAll();
-    const index = data.findIndex((value) => value.id === id);
-    const deletedJedi = data[index]
-    data.splice(index, 1);
-    await writeJediFile(data);
-    return deletedJedi
-}
-
 module.exports = {
     addJedi,
-    getAll,
     getJedi,
+    getAll,
     replaceJedi,
     deleteJedi,
 };
