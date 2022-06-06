@@ -1,8 +1,9 @@
 # Workshop 7: Express routes
 ### Welcome to your 7th workshop!
 In this workshop we will practice some javascript and also using express to build routes
-We already have 3 routes implemented:
-Root get route:
+<br>We already have 3 routes implemented:
+
+<br>Root get route:
 ```javascript
 app.get('/', (req, res) => {
     res.status(200).json({
