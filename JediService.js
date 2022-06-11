@@ -13,6 +13,10 @@ async function replaceJedi(jediId, newJedi) {
 
 async function deleteJedi(id) {
   //TODO Delete jedi by given id in our file
+  const data = await readJediFile();
+  const updatedData = data.filter((jedi) => jedi.id !== id);
+  await writeJediFile(updatedData);
+  return updatedData;
 }
 
 async function getAll() {

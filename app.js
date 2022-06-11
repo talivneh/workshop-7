@@ -65,6 +65,18 @@ app.put("/jedi/:id", async (req, res) => {
 });
 
 //TODO 3. create DELETE /jedi/:id route and handle logic of deleting jedi
+app.delete("/jedi/:id", async (req, res) => {
+  let jediId = Number.parseInt(req.params.id);
+  if (isNaN(jediId))
+    return res.status(400).json({
+      status: 400,
+      error: "wrong parameters",
+    });
+
+  const jedi = await jediService.deleteJedi(jediId);
+
+  res.status(200).json(jedi);
+});
 
 app.listen(port, () => {
   console.log("Server started on port", port);
