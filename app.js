@@ -61,6 +61,13 @@ app.put("/jedi/:id", async (req, res) => {
 
   const jedi = await jediService.replaceJedi(jediId, req.body);
 
+  if (!jedi) {
+    return res.status(404).json({
+      status: 404,
+      error: "ID not found",
+    });
+  }
+
   res.status(200).json(jedi);
 });
 
@@ -74,6 +81,13 @@ app.delete("/jedi/:id", async (req, res) => {
     });
 
   const jedi = await jediService.deleteJedi(jediId);
+
+  if (!jedi) {
+    return res.status(404).json({
+      status: 404,
+      error: "ID not found",
+    });
+  }
 
   res.status(200).json(jedi);
 });

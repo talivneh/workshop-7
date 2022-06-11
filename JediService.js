@@ -4,6 +4,8 @@ const jediFile = "jedi_list.json";
 async function replaceJedi(jediId, newJedi) {
   //TODO write logic replacing jedi by it's id with newly passed jedi
   const data = await readJediFile();
+  const jedi = data.find((jedi) => jedi.id === jediId);
+  if (!jedi) return false;
   const updatedData = data.map((oldJedi) =>
     oldJedi.id === jediId ? newJedi : oldJedi
   );
@@ -14,6 +16,8 @@ async function replaceJedi(jediId, newJedi) {
 async function deleteJedi(id) {
   //TODO Delete jedi by given id in our file
   const data = await readJediFile();
+  const jedi = data.find((jedi) => jedi.id === id);
+  if (!jedi) return false;
   const updatedData = data.filter((jedi) => jedi.id !== id);
   await writeJediFile(updatedData);
   return updatedData;
