@@ -51,6 +51,19 @@ app.get("/jedi", async (req, res) => {
 //TODO 2. create PUT /jedi/:id route and handle logic of updating jedi that already exists in the list.
 //Dont forget to take care of errors (e.g. jedi with id not exists)
 
+app.put("/jedi/:id", async (req, res) => {
+  let jediId = Number.parseInt(req.params.id);
+  if (isNaN(jediId))
+    return res.status(400).json({
+      status: 400,
+      error: "wrong parameters",
+    });
+
+  const jedi = await jediService.replaceJedi(jediId, req.body);
+
+  res.status(200).json(jedi);
+});
+
 //TODO 3. create DELETE /jedi/:id route and handle logic of deleting jedi
 
 app.listen(port, () => {

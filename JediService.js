@@ -1,8 +1,14 @@
 const fs = require("fs").promises;
 const jediFile = "jedi_list.json";
 
-async function replaceJedi(jediId, jedi) {
+async function replaceJedi(jediId, newJedi) {
   //TODO write logic replacing jedi by it's id with newly passed jedi
+  const data = await readJediFile();
+  const updatedData = data.map((oldJedi) =>
+    oldJedi.id === jediId ? newJedi : oldJedi
+  );
+  await writeJediFile(updatedData);
+  return newJedi;
 }
 
 async function deleteJedi(id) {
